@@ -1,6 +1,7 @@
 body {
     padding: 0;
     margin: 0;
+    /* background-color: black; */
 }
 
 .main {
@@ -8,7 +9,7 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    width: 389px;
+    width: 430px;
     margin: auto;
     margin-top: 3%;
     height: auto;
@@ -75,7 +76,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 23px;
+    width: 43px;
     height: 50px;
     overflow: hidden;
     float: left;
