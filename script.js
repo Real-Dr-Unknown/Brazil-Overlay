@@ -1,5 +1,7 @@
 
 let configData = {
+    "home_logo": "",
+    "away_logo": "",
     "timer_property": "",
     "home": "",
     "away": "",
@@ -14,50 +16,14 @@ let configData = {
     "clock_start_time": "",
     "minute": "",
     "second": "",
-    "link": ""
+    "sTimeMin": "",
+    "sTimeHour": ""
 }
-
-const scoreElement = document.getElementById("scS");
 
 function updateConfig(newData) {
     configData = { ...configData, ...newData };
     console.log(configData)
 }
-
-
-function getData(fotmobLink) {
-    url = fotmobLink;
-    proxy = 'https://cors-anywhere.herokuapp.com/';
-
-    myHeaders = new Headers();
-    myHeaders.append("accept", "*/*");
-    myHeaders.append("accept-language", "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7");
-    myHeaders.append("if-none-match", "\"1lzbvxech2554e\"");
-    myHeaders.append("priority", "u=1, i");
-    myHeaders.append("sec-ch-ua", "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"");
-    myHeaders.append("sec-ch-ua-mobile", "?0");
-    myHeaders.append("sec-ch-ua-platform", "\"Windows\"");
-    myHeaders.append("sec-fetch-dest", "empty");
-    myHeaders.append("sec-fetch-mode", "cors");
-    myHeaders.append("sec-fetch-site", "same-origin");
-    myHeaders.append("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36");
-    myHeaders.append("x-mas", "eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hEZXRhaWxzP21hdGNoSWQ9NDUxNDEwMCZzaG93TmV3VWVmYUJyYWNrZXQ9dHJ1ZSIsImNvZGUiOjE3MzQzNDYwOTEyOTUsImZvbyI6Ijc4YzI5YjYwYyJ9LCJzaWduYXR1cmUiOiJEMTlENkEyNTBCQjYyMjcwM0QwRUVCQjdCMDcxRkQ0NyJ9");
-
-    requestOptions = {
-        method: "GET",
-        headers: myHeaders,
-        redirect: "follow"
-    };
-
-    fetch(proxy + url, requestOptions)
-        .then(response => response.json())
-        .then(data => {
-            scoreElement.childNodes[0].textContent = data.header.teams[0].score
-            scoreElement.childNodes[2].textContent = data.header.teams[1].score
-        })
-        .catch(err => console.error(err));
-}
-
 
 function converttime(tiptop) {
 
@@ -71,44 +37,6 @@ function converttime(tiptop) {
 }
 
 
-function autoPreSetter(fotmobLink) {
-    url = fotmobLink;
-    const proxy = 'https://cors-anywhere.herokuapp.com/';
-
-    const myHeaders = new Headers();
-    myHeaders.append("accept", "*/*");
-    myHeaders.append("accept-language", "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7");
-    myHeaders.append("if-none-match", "\"1lzbvxech2554e\"");
-    myHeaders.append("priority", "u=1, i");
-    myHeaders.append("sec-ch-ua", "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"");
-    myHeaders.append("sec-ch-ua-mobile", "?0");
-    myHeaders.append("sec-ch-ua-platform", "\"Windows\"");
-    myHeaders.append("sec-fetch-dest", "empty");
-    myHeaders.append("sec-fetch-mode", "cors");
-    myHeaders.append("sec-fetch-site", "same-origin");
-    myHeaders.append("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36");
-    myHeaders.append("x-mas", "eyJib2R5Ijp7InVybCI6Ii9hcGkvbWF0Y2hEZXRhaWxzP21hdGNoSWQ9NDUxNDEwMCZzaG93TmV3VWVmYUJyYWNrZXQ9dHJ1ZSIsImNvZGUiOjE3MzQzNDYwOTEyOTUsImZvbyI6Ijc4YzI5YjYwYyJ9LCJzaWduYXR1cmUiOiJEMTlENkEyNTBCQjYyMjcwM0QwRUVCQjdCMDcxRkQ0NyJ9");
-
-    const requestOptions = {
-        method: "GET",
-        headers: myHeaders,
-        redirect: "follow"
-    };
-
-    fetch(proxy + url, requestOptions)
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('hImage').src = data.header.teams[0].imageUrl
-            scoreElement.childNodes[0].textContent = data.header.teams[0].score
-            document.getElementById('aImage').src = data.header.teams[1].imageUrl
-            scoreElement.childNodes[2].textContent = data.header.teams[1].score
-
-        })
-        .catch(err => console.error(err));
-}
-
-
-
 let start = document.getElementById('sBtn')
 let coppy = document.getElementById('cBtn')
 let reset = document.getElementById('rBtn')
@@ -117,14 +45,17 @@ let exx = document.getElementById('exxt')
 let clockk = document.getElementById('timerDisplay')
 let cdiv = document.getElementById('adiv')
 
-let fClera = null
-let isRunning = false
+let ajC = null;
+let fClera = null;
+let isRunning = false;
 let sec = 0;
 let min = 0;
-let temp = false
+let temp = false;
 let hTOver = false;
-let aT = true
-let fotmobLink = "https://www.fotmob.com/api/matchDetails?matchId="
+let aT = true;
+let tStartHour = null;
+let tStartMin = null;
+let aRun = false;
 
 
 function minsetter() {
@@ -211,6 +142,16 @@ function aTCSetter() {
     updateConfig({ away_text_color: document.getElementById('aTColor').value });
 }
 
+function hLSetter() {
+    document.getElementById('hImage').src = document.getElementById('hLogo').value
+    updateConfig({ home_logo: document.getElementById('hLogo').value });
+}
+
+function aLSetter() {
+    document.getElementById('aImage').src = document.getElementById('aLogo').value
+    updateConfig({ away_logo: document.getElementById('aLogo').value });
+}
+
 function sTSetter() {
     let sT = document.getElementById('scS')
     sT.style.color = document.getElementById('sTColor').value
@@ -221,6 +162,18 @@ function sBSetter() {
     let sB = document.getElementById('scS')
     sB.style.backgroundColor = document.getElementById('sBColor').value
     updateConfig({ score_background_color: document.getElementById('sBColor').value });
+}
+
+function tTSetter() {
+    let tT = document.getElementById('timerDisplay')
+    tT.style.color = document.getElementById('tTColor').value
+    updateConfig({ timer_text_color: document.getElementById('tTColor').value });
+}
+
+function tBSetter() {
+    let tB = document.getElementById('timerDisplay')
+    tB.style.backgroundColor = document.getElementById('tBColor').value
+    updateConfig({ timer_background_color: document.getElementById('aTColor').value });
 }
 
 function autooS() {
@@ -237,15 +190,25 @@ function autooS() {
 
 }
 
-function linkgetter() {
-    let uselessLink = document.getElementById('fotmob').value
-    let matchID = uselessLink.split('#')
-    fotmobLink = "https://www.fotmob.com/api/matchDetails?matchId="
-    fotmobLink = fotmobLink + matchID[1]
-    updateConfig({ link: fotmobLink })
-    autoPreSetter(fotmobLink)
+function autoHoursetter() {
+    aHour = document.getElementById('autoHour').value
+    updateConfig({ sTimeHour: document.getElementById('autoHour').value });
+    tStartHour = Number(aHour)
+    if (tStartHour !== null && tStartMin !== null && !isRunning && !aRun) {
+        ajC = setInterval(astr, 15000)
+        aRun = true
+    }
 }
 
+function autoMinsetter() {
+    aMin = document.getElementById('autoMin').value
+    updateConfig({ sTimeMin: document.getElementById('autoMin').value });
+    tStartMin = Number(aMin)
+    if (tStartHour !== null && tStartMin !== null && !isRunning && !aRun) {
+        ajC = setInterval(astr, 15000)
+        aRun = true
+    }
+}
 
 coppy.onclick = function generateShareableLink() {
     const configString = encodeURIComponent(JSON.stringify(configData));
@@ -262,6 +225,8 @@ coppy.onclick = function generateShareableLink() {
 
 document.getElementById('timMin').addEventListener("input", minsetter)
 document.getElementById('timSec').addEventListener("input", secsetter)
+document.getElementById('autoMin').addEventListener("input", autoMinsetter)
+document.getElementById('autoHour').addEventListener("input", autoHoursetter)
 document.getElementById('hName').addEventListener("input", hsetter)
 document.getElementById('aName').addEventListener("input", asetter)
 document.getElementById('hColor').addEventListener("input", hCSetter)
@@ -270,8 +235,11 @@ document.getElementById('hTColor').addEventListener("input", hTCSetter)
 document.getElementById('aTColor').addEventListener("input", aTCSetter)
 document.getElementById('sTColor').addEventListener("input", sTSetter)
 document.getElementById('sBColor').addEventListener("input", sBSetter)
+document.getElementById('tTColor').addEventListener("input", tTSetter)
+document.getElementById('tBColor').addEventListener("input", tBSetter)
+document.getElementById('hLogo').addEventListener("input", hLSetter)
+document.getElementById('aLogo').addEventListener("input", aLSetter)
 document.getElementById('autoSwitcher').addEventListener("click", autooS)
-document.getElementById('fotmob').addEventListener("input", linkgetter)
 
 async function checker() {
     if (!temp) {
@@ -294,8 +262,18 @@ async function checker() {
 
             isRunning = true;
             hTOver = true;
-
         }
+    }
+}
+
+function astr() {
+    console.log("15 Sec Interval")
+    now = new Date();
+    console.log(now.getHours())
+    console.log(now.getMinutes())
+    if (now.getHours() === tStartHour && now.getMinutes() === tStartMin) {
+        starttimer()
+        console.log("Auto Started")
     }
 }
 
@@ -343,11 +321,6 @@ function ttemer() {
 
 function presetter() {
 
-    if (configData.link) {
-        fotmobLink = configData.link
-        autoPreSetter(fotmobLink)
-    }
-
     if (configData.home) {
         let HHH = document.getElementById('hhN');
         HHH.textContent = configData.home.toUpperCase();
@@ -356,6 +329,14 @@ function presetter() {
     if (configData.away) {
         let AAA = document.getElementById('aaN');
         AAA.textContent = configData.away.toUpperCase();
+    }
+
+    if (configData.home_logo) {
+        document.getElementById('hImage').src = configData.home_logo;
+    }
+
+    if (configData.away_logo) {
+        document.getElementById('aImage').src = configData.away_logo;
     }
 
     if (configData.home_color) {
@@ -381,6 +362,18 @@ function presetter() {
         let AAAC = document.getElementById('aaN')
         AAAC.style.color = configData.away_text_color;
     }
+
+    if (configData.sTimeHour) {
+        tStartHour = Number(configData.sTimeHour)
+        console.log(tStartHour)
+    }
+
+    if (configData.sTimeMin) {
+        tStartMin = Number(configData.sTimeMin)
+        ajC = setInterval(astr, 15000)
+        aRun = true
+    }
+
     if (configData.minute) {
 
         min = configData.minute
@@ -488,6 +481,7 @@ start.onclick = function starttimer() {
         fClera = setInterval(ttemer, 1000)
         updateConfig({ timer_property: "start" });
         updateConfig({ clock_start_time: Date.now() });
+        clearInterval(ajC)
     }
     isRunning = true
 }
@@ -516,6 +510,7 @@ function stopTimerr() {
 function starttimer() {
     if (!isRunning) {
         fClera = setInterval(ttemer, 1000)
+        clearInterval(ajC)
     }
     isRunning = true
 }
@@ -525,7 +520,7 @@ rBtn.onclick = function () {
     exx.style.visibility = 'hidden'
     min = 0;
     sec = 0;
-    clockk.textContent = 'LIVE';
+    clockk.textContent = '00:00';
     if (isRunning) {
         fClera = setInterval(ttemer, 1000);
     }
@@ -553,7 +548,5 @@ function loadConfigFromURL() {
 }
 
 loadConfigFromURL();
-
-setInterval(() => getData(fotmobLink), 30000)
 
 presetter();
