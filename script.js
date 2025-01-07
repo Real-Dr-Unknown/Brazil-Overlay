@@ -13,9 +13,6 @@ let configData = {
     "score_background_color": "",
     "timer_text_color": "",
     "timer_background_color": "",
-    "clock_start_time": "",
-    "minute": "",
-    "second": "",
     "sTimeMin": "",
     "sTimeHour": ""
 }
@@ -24,18 +21,6 @@ function updateConfig(newData) {
     configData = { ...configData, ...newData };
     console.log(configData)
 }
-
-function converttime(tiptop) {
-
-    let tip = tiptop / 1000
-    let tip_min = Math.floor(tip / 60);
-    let tip_sec = Math.floor(tip % 60);
-
-    console.log(tip_min, tip_sec, tiptop)
-    min = Number(configData.minute) + tip_min
-    sec = Number(configData.second) + tip_sec
-}
-
 
 let start = document.getElementById('sBtn')
 let coppy = document.getElementById('cBtn')
@@ -60,7 +45,6 @@ let aRun = false;
 
 function minsetter() {
     min = document.getElementById('timMin').value
-    updateConfig({ minute: document.getElementById('timMin').value });
     min = Number(min)
 
     if (sec < 10 && min < 10) {
@@ -79,9 +63,7 @@ function minsetter() {
 
 function secsetter() {
     sec = document.getElementById('timSec').value
-    updateConfig({ second: document.getElementById('timSec').value });
     sec = Number(sec);
-
 
     if (sec > 59) {
         document.getElementById('timSec').value = null
@@ -271,9 +253,12 @@ function astr() {
     now = new Date();
     console.log(now.getHours())
     console.log(now.getMinutes())
-    if (now.getHours() === tStartHour && now.getMinutes() === tStartMin) {
+    if (now.getHours() === tStartHour && now.getMinutes() >= tStartMin) {
         starttimer()
         console.log("Auto Started")
+        if (now.getMinutes() > tStartMin) {
+            min = now.getMinutes() - tStartMin;
+        }
     }
 }
 
@@ -372,106 +357,6 @@ function presetter() {
         tStartMin = Number(configData.sTimeMin)
         ajC = setInterval(astr, 15000)
         aRun = true
-    }
-
-    if (configData.minute) {
-
-        min = configData.minute
-        min = Number(min)
-
-        if (sec < 10 && min < 10) {
-            clockk.textContent = '0' + min + ':' + '0' + sec;
-        }
-        if (min < 10 && sec > 9) {
-            clockk.textContent = '0' + min + ':' + sec;
-        }
-        if (min > 9 && sec < 10) {
-            clockk.textContent = min + ':' + '0' + sec;
-        }
-        if (sec > 9 && min > 9) {
-            clockk.textContent = min + ':' + sec;
-        }
-    }
-
-    if (configData.second) {
-
-        sec = configData.second
-        sec = Number(sec);
-
-        if (sec > 59) {
-            document.getElementById('timSec').value = null
-            sec = 0
-            min++
-        }
-        if (sec < 10 && min < 10) {
-            clockk.textContent = '0' + min + ':' + '0' + sec;
-        }
-        if (min < 10 && sec > 9) {
-            clockk.textContent = '0' + min + ':' + sec;
-        }
-        if (min > 9 && sec < 10) {
-            clockk.textContent = min + ':' + '0' + sec;
-        }
-        if (sec > 9 && min > 9) {
-            clockk.textContent = min + ':' + sec;
-        }
-    }
-
-    if (configData.timer_property == "start") {
-        let spend_time = Date.now() - configData.clock_start_time
-        converttime(spend_time)
-        starttimer();
-    }
-
-    if (configData.timer_property == "stop") {
-        stopTimerr()
-    }
-
-    if (configData.timer_property == "reset") {
-        resetbutt()
-    }
-
-    if (configData.minute) {
-
-        min = configData.minute
-        min = Number(min)
-
-        if (sec < 10 && min < 10) {
-            clockk.textContent = '0' + min + ':' + '0' + sec;
-        }
-        if (min < 10 && sec > 9) {
-            clockk.textContent = '0' + min + ':' + sec;
-        }
-        if (min > 9 && sec < 10) {
-            clockk.textContent = min + ':' + '0' + sec;
-        }
-        if (sec > 9 && min > 9) {
-            clockk.textContent = min + ':' + sec;
-        }
-    }
-
-    if (configData.second) {
-
-        sec = configData.second
-        sec = Number(sec);
-
-        if (sec > 59) {
-            document.getElementById('timSec').value = null
-            sec = 0
-            min++
-        }
-        if (sec < 10 && min < 10) {
-            clockk.textContent = '0' + min + ':' + '0' + sec;
-        }
-        if (min < 10 && sec > 9) {
-            clockk.textContent = '0' + min + ':' + sec;
-        }
-        if (min > 9 && sec < 10) {
-            clockk.textContent = min + ':' + '0' + sec;
-        }
-        if (sec > 9 && min > 9) {
-            clockk.textContent = min + ':' + sec;
-        }
     }
 }
 
