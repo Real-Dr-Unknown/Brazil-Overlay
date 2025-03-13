@@ -33,8 +33,12 @@ let stopp = document.getElementById('spBtn')
 let exx = document.getElementById('exxt')
 let clockk = document.getElementById('timerDisplay')
 let cdiv = document.getElementById('adiv')
+let pllus = document.getElementById('exxtexxtexxt')
+let pextimer = document.getElementById('exxtexxt')
 
-
+let exisRunning = false;
+let exmin = 0;
+let exsec = 0;
 let showADS = false;
 let ajC = null;
 let fClera = null;
@@ -307,6 +311,7 @@ document.getElementById('aLogo').addEventListener("input", aLSetter)
 document.getElementById('autoSwitcher').addEventListener("click", autooS)
 
 async function checker() {
+    exxt();
     if (!temp) {
         puranatime = Date.now() / (1000 * 60);
     }
@@ -314,6 +319,7 @@ async function checker() {
     temp = true;
 
     while (!hTOver) {
+        console.log("30 Sec Interval")
 
         await new Promise(r => setTimeout(r, 30000));
 
@@ -371,14 +377,14 @@ function ttemer() {
             clockk.textContent = min + ':' + sec;
         }
         if (min == 45 && sec == 0 && aT) {
-            exx.style.visibility = 'visible';
+            
             isRunning = false;
             let tt = clearInterval(fClera)
             checker();
         }
         if (min == 90 && sec == 0 && aT) {
+            exxt();
             exx.textContent = '+8';
-            exx.style.visibility = 'visible';
             isRunning = false;
             let tt = clearInterval(fClera)
         }
@@ -539,4 +545,43 @@ function loadConfigFromURL() {
 
 loadConfigFromURL();
 
-presetter();
+
+function extimer() {
+    if (exisRunning) {
+        exsec++
+        if (exsec >= 60) {
+            exsec = 0;
+            exmin++;
+        }
+        if (exsec < 10 && exmin < 10) {
+            pextimer.textContent = '0' + exmin + ':' + '0' + exsec;
+        }
+        if (exmin < 10 && exsec > 9) {
+            pextimer.textContent = '0' + exmin + ':' + exsec;
+        }
+        if (exmin > 9 && exsec < 10) {
+            pextimer.textContent = exmin + ':' + '0' + exsec;
+        }
+        if (exsec > 9 && exmin > 9) {
+            pextimer.textContent = exmin + ':' + exsec;
+        }
+        if (exmin == 9 && exsec == 0) {
+            exisRunning = false;
+            clearInterval(exfClera);
+            exmin = 0;
+            exsec = 0;
+            pextimer.style.display = 'none';
+            pllus.style.display = 'none';
+            exx.style.visibility = 'visible';
+        }
+    }
+}
+
+function exxt() {
+    if (!exisRunning) {
+        exisRunning = true;
+        pextimer.style.display = 'flex';
+        pllus.style.display = 'flex';
+        exfClera = setInterval(extimer, 1000);
+    }
+}

@@ -16,6 +16,7 @@ body {
     margin-top: 3%;
     height: auto;
     z-index: -100;
+    position: relative;
     margin-bottom: 3%;
 }
 
@@ -127,9 +128,10 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     width: 90px;
     height: 30px;
-    margin-left: 60px;
+    /* margin-left: 60px; */
     justify-content: center;
     align-items: center;
+    margin-top: 3px;
 }
 
 .extra_time {
@@ -138,18 +140,36 @@ body {
     text-rendering: optimizeLegibility;
     margin-right: 18px;
     color: black;
-    background-color: rgb(255, 255, 255);
+    background-color: white;
     font-size: 28px;
     font-weight: 900;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
-    width: 40px;
-    height: 40px;
+    position: absolute;
+    left: 260px;
+    top: 53px;
+    width: 45px;
+    height: 33.5px;
+    border-radius: 5px;
     justify-content: center;
     align-items: center;
     float: right;
     visibility: hidden;
 }
+
+#exxtexxtexxt {
+    display: none;
+    width: 0px;
+    z-index: 100;
+    background-color: transparent;
+}
+
+
+#exxtexxt {
+    display: none;
+}
+
+
 
 /* Input Feilds Stype */
 
