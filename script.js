@@ -529,7 +529,7 @@ stopp.onclick = function stopTimerr() {
 
     updateConfig({ timer_property: "stop" });
 
-    presetter();
+    
     if (Math.random() < 0.25 && showADS) {
         window.location.href = "https://doubtsuseless.com/i5gr1ymzu?key=eadd4537300fb50b50998717c6e106a6";
     }
@@ -544,7 +544,7 @@ function loadConfigFromURL() {
 }
 
 loadConfigFromURL();
-
+presetter();
 
 function extimer() {
     if (exisRunning) {
