@@ -36,6 +36,8 @@ let cdiv = document.getElementById('adiv')
 let pllus = document.getElementById('exxtexxtexxt')
 let pextimer = document.getElementById('exxtexxt')
 
+
+let waitext = 0;
 let exisRunning = false;
 let exmin = 0;
 let exsec = 0;
@@ -377,12 +379,13 @@ function ttemer() {
             clockk.textContent = min + ':' + sec;
         }
         if (min == 45 && sec == 0 && aT) {
-            
+            waitext = 9;
             isRunning = false;
             let tt = clearInterval(fClera)
             checker();
         }
         if (min == 90 && sec == 0 && aT) {
+            waitext = 30;
             exxt();
             exx.textContent = '+8';
             isRunning = false;
@@ -488,6 +491,15 @@ function resetbutt() {
         fClera = setInterval(ttemer, 1000);
     }
 
+    
+    if (exisRunning) {
+        exisRunning = false;
+        clearInterval(exfClera);
+        exmin = 0;
+        exsec = 0;
+        pextimer.style.display = 'none';
+    }
+
     document.getElementById('timSec').value = null
     document.getElementById('timMin').value = null
 }
@@ -513,6 +525,15 @@ rBtn.onclick = function () {
     clockk.textContent = '00:00';
     if (isRunning) {
         fClera = setInterval(ttemer, 1000);
+    }
+
+    
+    if (exisRunning) {
+        exisRunning = false;
+        clearInterval(exfClera);
+        exmin = 0;
+        exsec = 0;
+        pextimer.style.display = 'none';
     }
 
     document.getElementById('timSec').value = null
@@ -565,7 +586,8 @@ function extimer() {
         if (exsec > 9 && exmin > 9) {
             pextimer.textContent = exmin + ':' + exsec;
         }
-        if (exmin == 9 && exsec == 0) {
+        if (exmin == waitext && exsec == 0) {
+            waitext = 30;
             exisRunning = false;
             clearInterval(exfClera);
             exmin = 0;
@@ -585,3 +607,4 @@ function exxt() {
         exfClera = setInterval(extimer, 1000);
     }
 }
+
